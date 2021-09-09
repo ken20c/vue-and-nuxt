@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My first vue app</title>
+
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        {{ message }}
+    </div>
+    <hr>
+    <button>click</button>
+    <input type="text">
+
+    <script>
+        var data = {
+            message: 'Hello Vue!',
+            items: ['one', 'two','theee', 'four', 'five'],
+        };
+        /***
+         * ここで
+         */
+        var app = new Vue({
+            el: '#app',
+            data : data,
+            render: (h)=>{
+                return h("div", [
+                    h("p",
+                        {style:'font-size:20pt;'},
+                        data.message),
+                    h("ol",
+                        data.items.map(i=> h('li', i))
+                    )
+                ]);
+            }
+        })
+
+        let button = document.querySelector('button');
+        button.onclick = () => {
+            var newdata = [
+                'いち', 'に', 'さん', 'よん', 'ご'
+            ]
+            data.message = "クリックしたな変態";
+            data.items[0] = 'ぜろ'
+            for (n in data.items) {
+                data.items[n] = newdata[n];
+            }
+        }
+
+        let input = document.querySelector('input');
+        input.oninput = (event) => {
+            data.message = event.target.value;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue"></script>
+    <title>テンプレート構文</title>
+</head>
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <ol v-html="vmessages">表示がうまく行っていないようです。</ol>
+    </div>
+    <hr>
+    <input type="text">
+    <button>click</button>
+
+    <script>
+        var vdata = {
+            vmessages: '<li>Hello Vue!</li>',
+            another_message: 'hi',
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data: vdata,
+        });
+        
+        let input = document.querySelector('input');
+        input.oninput = (e) => {
+            vdata.message = e.target.value;
+        }
+        let button = document.querySelector('button');
+        button.onclick = () => {
+            vdata.vmessages = '<li>' + vdata.message + '</li>' + vdata.vmessages;
+        }
+    </script>
+</body>
+</html>
