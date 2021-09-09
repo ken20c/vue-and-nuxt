@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://unpkg.com/vue"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色を変える</title>
+</head>
+<body>
+    <style>
+        table tr th {
+            font-size: 16pt;
+            color: white;
+            background-color: blue;
+            padding: 5px 15px;
+        }
+        table tr td {
+            font-size: 16pt;
+            color:gray;
+            border:1px solid gray;
+        }
+        li {
+            font-size: 16pt;
+            color:gray;
+        }
+    </style>
+    <h1>Bue.js</h1>
+    <div id="app">
+        <template v-if="flag">
+            <p>データをテーブル表示する</p>
+            <table>
+                <tr><th>Name</th><th>mail</th></tr>
+                <tr><td>Taro</td><td>taro@yamada</td></tr>
+                <tr><td>Hanako</td><td>hanako@flower</td></tr>
+                <tr><td>Sachiko</td><td>sachiko@happy</td></tr>
+            </table>
+        </template>
+        <template v-else>
+            <p>データをリスト表示する</p>
+            <ul>
+                <li>Taroのアドレスはtaro@yamada</li>
+                <li>hanakoのアドレスはhanako@flower</li>
+                <li>sachikoのアドレスはsachiko@happy</li>
+            </ul>
+        </template>
+    </div>
+    <hr>
+    <button>Click</button>
+
+    <script>
+        var vdata = {
+            flag: true,
+        }
+        var app = new Vue({
+            el: '#app',
+            data: vdata,
+        });
+        let button = document.querySelector('button');
+        button.onclick = (event) => {
+            vdata.flag = !vdata.flag;
+        }
+    </script>
+
+</body>
+</html>
