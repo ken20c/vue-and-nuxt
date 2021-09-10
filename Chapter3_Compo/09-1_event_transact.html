@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue"></script>
+    <title>入力でコンポを作ろう</title>
+
+    <style>
+        .hello {
+            font-size: 20pt;
+            font-weight: bold;
+            border: 1px solid magenta;
+            padding: 5px 10px 0 10px;
+            margin: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <style>
+        .red {
+            color:white;
+            background-color:red;
+        }
+    </style>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <hello/>
+    </div>
+
+    <script>
+        Vue.component('hello', {
+            data:function() {
+                return {
+                    num:'',
+                    message:'あなたの名前は？',
+                };
+            },
+            methods: {
+                calc:function(event) {
+                    this.message = this.num + 'さん，こんにちは！';
+                    if(this.num === 'かほ' || this.num === 'かっほ' || this.num === '華穂'){
+                        this.message = '大好きだよ，' + this.num;
+                    }
+                }
+            },
+            template: '<div><p class="hello"> {{message}}</p><div><input type="text" v-on:input="calc" v-model="num"></div></div>',
+        })
+
+        var app = new Vue({
+            el: '#app',
+        });
+    </script>
+</body>
+</html>
