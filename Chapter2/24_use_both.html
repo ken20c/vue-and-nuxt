@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://unpkg.com/vue"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-forとv-if</title>
+</head>
+<body>
+    <style>
+        table tr th {
+            font-size: 16pt;
+            color: white;
+            background-color: blue;
+            padding: 5px 15px;
+        }
+        table tr td {
+            font-size: 16pt;
+            color:gray;
+            border:1px solid gray;
+            padding: 5px 15px;
+        }
+    </style>
+    <h1>Vue.js</h1>
+    <div id="app">
+            <p>データをテーブル表示する</p>
+            <table>
+                <tr>
+                    <th>index</th>
+                    <th>name</th>
+                    <th>mail</th>
+                    <th>tel</th>
+                    <th>tel2</th>
+                </tr>
+                <tr v-for="(item, index) in items" v-if="index%2==0">
+                    <td>{{index}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.mail}}</td>
+                    <td>{{item.tel}}</td>
+                    <td>{{item.tel}}</td>
+                </tr>
+                <tr v-else>
+                    <td>***</td>
+                    <td>***secret***</td>
+                    <td>***secret***</td>
+                    <td>***secret***</td>
+                    <td>***secret***</td>
+                </tr>
+            </table>
+    </div>
+
+    <script>
+        var vdata = {
+            items: [
+                {name:'Taro', mail:'taro@yamada', tel:'123-4567'},
+                {name:'Hanako', mail:'hanako@flower', tel:'435-6463'},
+                {name:'Sachiko', mail:'Jiro@change', tel:'469-3785'},
+            ]
+        }
+        var app = new Vue({
+            el: '#app',
+            data: vdata,
+        });
+        let button = document.querySelector('button');
+        button.onclick = (event) => {
+            vdata.flag = !vdata.flag;
+        }
+    </script>
+
+</body>
+</html>
